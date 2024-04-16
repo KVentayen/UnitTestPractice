@@ -20,3 +20,33 @@ TEST(PasswordTest, single_letter_password)
 	int actual = my_password.count_leading_characters("Z");
 	ASSERT_EQ(1, actual);
 }
+
+TEST(PasswordTest, short_mixed_case_1)
+{
+	Password pass;
+	ASSERT_TRUE( pass.has_mixed_case("zH") ); // Lower, Upper
+}
+
+TEST(PasswordTest, short_mixed_case_2)
+{
+	Password pass;
+	ASSERT_TRUE( pass.has_mixed_case("Hh") ); // Upper, Lower
+}
+
+TEST(PasswordTest, short_mixed_case_3)
+{
+	Password pass;
+	ASSERT_TRUE( pass.has_mixed_case("jKHh") ); // Lower, Upper, Upper, Lower
+}
+
+TEST(PasswordTest, short_mixed_case_4)
+{
+	Password pass;
+	ASSERT_TRUE( pass.has_mixed_case("JkhH") ); // Upper, Lower, Lower, Upper
+}
+
+TEST(PasswordTest, short_mixed_case_empty)
+{
+	Password pass;
+	ASSERT_FALSE( pass.has_mixed_case("") ); // No input
+}
